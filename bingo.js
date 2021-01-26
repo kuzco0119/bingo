@@ -1,6 +1,6 @@
 
 var bingoStart = 1;
-var bingoEnd = 75;
+var bingoEnd = 100;
 
 
 function btnClick(){
@@ -45,7 +45,7 @@ function createBingoBall(){
 
 		 if(index % itemPerLine == 0)
 			homeDiv.appendChild(document.createElement('br'));
-		else if(index % 5 == 0){
+		else if(index % 7 == 0){
 			var space = document.createElement('span')
 			space.innerHTML = '&nbsp;&nbsp;';
 			homeDiv.appendChild(space);
@@ -60,8 +60,8 @@ function bingoBallSelect(ball){
 	for(var index = 0 ; index < cards.length ; index++){
 		var card = cards[index];
 
-		for(var y = 0 ; y < 5 ; y++){
-			for(var x = 0 ; x < 5 ; x++){
+		for(var y = 0 ; y < 7 ; y++){
+			for(var x = 0 ; x < 7 ; x++){
 				if(card.bingoNums[y][x].innerText != ball) continue;
 
 				if(card.booleans[y][x])
@@ -79,8 +79,8 @@ function bingoBallUnSelect(ball){
 	for(var index = 0 ; index < cards.length ; index++){
 		var card = cards[index];
 
-		for(var y = 0 ; y < 5 ; y++){
-			for(var x = 0 ; x < 5 ; x++){
+		for(var y = 0 ; y < 7 ; y++){
+			for(var x = 0 ; x < 7 ; x++){
 				if(card.bingoNums[y][x].innerText != ball) continue;
 
 				if(!card.booleans[y][x])
@@ -169,27 +169,20 @@ function createBingoCard() {
 	var totalCard = document.createElement('div');
 	totalCard.className = 'totalCard';
 	totalCard.innerText = "卡片總數 " + cards.length + " 張，";
-	if(cards.length <= 5)
-		totalCard.innerText += "  買那麼少，你不會中。"
-	else if(cards.length > 5 && cards.length < 10)
-		totalCard.innerText += "  專心吃你的飯，你不會中。"
-	else if(cards.length >= 10 && cards.length < 20)
-		totalCard.innerText += "  唉唷 砸超過500，但你還是不會中。"
-	else if(cards.length >= 20 && cards.length < 25)
-		totalCard.innerText += "  嘖嘖 砸超過1000，謝謝你捐錢出來給大家花。"
-	else
-		totalCard.innerText += "  凱子。"
+	totalCard.innerText += "宏志給我錢"
 
 	homeDiv.appendChild(totalCard);
 
 	for(var index = 0 ; index < cards.length ; index++){
 		var card = cards[index];
 		card.booleans = [
-		[false,false,false,false,false],
-		[false,false,false,false,false],
-		[false,false,false,false,false],
-		[false,false,false,false,false],
-		[false,false,false,false,false]];
+		[false,false,false,false,false,false,false],
+		[false,false,false,false,false,false,false],
+		[false,false,false,false,false,false,false],
+		[false,false,false,false,false,false,false],
+		[false,false,false,false,false,false,false],
+		[false,false,false,false,false,false,false],
+		[false,false,false,false,false,false,false]];
 		var cardContainer = document.createElement('div');
 		cardContainer.className = 'cardContainer';
 		homeDiv.appendChild(cardContainer);
@@ -212,9 +205,9 @@ function createBingoCard() {
 		cardContainer.appendChild(delButton);
 		//cardContainer.appendChild(delButton);
 
-		for(var y = 0 ; y < 5 ; y++){
+		for(var y = 0 ; y < 7 ; y++){
 			card.bingoNums.push([]);
-			for(var x = 0 ; x < 5 ; x++){
+			for(var x = 0 ; x < 7 ; x++){
 				var bingoNum = document.createElement('div');
 				bingoNum.className = 'bingoNum color'+y+''+x;
 				bingoNum.innerText = card.value[y][x];
@@ -230,11 +223,13 @@ function createNewBingoCard() {
 	newCard = new function(){};
 	newCard.no = '';
 	newCard.value = [
-		['', '', '', '', ''],
-		['', '', '', '', ''],
-		['', '', 'free', '', ''],
-		['', '', '', '', ''],
-		['', '', '', '', '']
+		['', '', '', '', '', '', ''],
+		['', '', '', '', '', '', ''],
+		['', '', '', '', '', '', ''],
+		['', '', '', '', '', '', ''],
+		['', '', '', '', '', '', ''],
+		['', '', '', '', '', '', ''],
+		['', '', '', '', '', '', '']
 	];
 
 	var cardContainer = document.createElement('div');
@@ -260,9 +255,9 @@ function createNewBingoCard() {
 	cardContainer.cardTitle = cardTitle;
 	cardContainer.appendChild(cardTitle);
 
-	for(var y = 0 ; y < 5 ; y++){
+	for(var y = 0 ; y < 7 ; y++){
 			newCard.bingoNums.push([]);
-		for(var x = 0 ; x < 5 ; x++){
+		for(var x = 0 ; x < 7 ; x++){
 			var bingoNum = document.createElement('div');
 			bingoNum.className = 'bingoNum color'+y+''+x;
 			bingoNum.innerText = (newCard.value[y][x]) ? newCard.value[y][x] : '--';
